@@ -21,27 +21,32 @@ Done in Go so I can learn some more Go.
 
 ## Endpoints
 
-GET - `/things` list all things
+List all things
 
+Example
 ```
 curl localhost:8080/things
 ```
 
-POST - `/thing` add a thing
+Add a thing
 
 Payload
+
 ```
 { "name": "string"}
 ```
 
 Example
+
 ```
 curl --header "Content-Type: application/json" \
   --request POST --data '{"name":"plumbus"}' \   
   http://localhost:8080/thing
 ```
 
-TODO: DELETE (delete a thing), PUT (update a thing)
+TODO: Delete a thing
+
+TODO: Update a thing
 
 ---
 
