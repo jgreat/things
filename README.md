@@ -1,4 +1,12 @@
+---
+
+Note to reviewers.  I guess I was confused by what you were looking for and maybe overdid it. This "runbook" won't make sence without the code. The whole app and directions can be found here: https://github.com/jgreat/things
+
+---
+
 # things
+
+
 A simple REST/CRUD code sample app.
 
 Golang, PostgreSQL
@@ -35,22 +43,15 @@ curl --header "Content-Type: application/json" \
 
 TODO: DELETE (delete a thing), PUT (update a thing)
 
+---
+
 ## Development
 
-### Prerequisites
-
-This environment is pre-configured for running/compling in docker with remote debugging and automatic rebuilds on code changes.
-
-- `vscode` - https://code.visualstudio.com/download
-- `go` 1.15 - https://golang.org/dl/
-- `docker` - https://docs.docker.com/get-docker/
-- `docker-compose` - https://docs.docker.com/compose/install/
-
-See [Setup](#setup) for creating a go development environment.
+See [Setup](#setup) for requirements and creating a go development environment.
 
 ### Doing development
 
-When you start work `source` the go project `source_me.sh` file to setup your environment.
+When you start work, source the go project `source_me.sh` file to setup your environment.
 
 ```
 cd ~/gopath/things
@@ -64,9 +65,10 @@ cd ~/gopath/things/src/github.com/jgreat/things
 docker-compose up --build
 ```
 
-The app should be available at: http://127.0.0.1:8080
+* App endpoint: http://127.0.0.1:8080
+* DB endpoint: `postgres://things:example@db:5432/things?sslmode=disable`
 
-When you make changes to the code the container should automatically restart and rebuild the api binary
+When you make changes to the code the container should automatically restart and rebuild the app binary.
 
 ### Debugging
 
@@ -76,7 +78,18 @@ There is a pre-configured `.vscode/launch.json` profile ready to attach to `dlv`
 
 In `vscode` select the debug option and run `Attach Remote`, set your break points and have fun.
 
+---
+
 ## Setup
+
+### Prerequisites
+
+This environment is pre-configured for running/compling in docker with remote debugging and automatic rebuilds on code changes.
+
+- `vscode` - https://code.visualstudio.com/download
+- `go` 1.15 - https://golang.org/dl/
+- `docker` - https://docs.docker.com/get-docker/
+- `docker-compose` - https://docs.docker.com/compose/install/
 
 ### Install go
 
