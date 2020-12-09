@@ -1,0 +1,41 @@
+# This docker-compose is for local development
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: things
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: things
+    ports:
+      - "127.0.0.1:5432:5432"
+
+  api_volume_init:
+    image: ubuntu
+    restart: "no"
+    command: chown -R 1000:1000 /mod
+    volumes:
+      - "modules:/mod"
+
+  api:
+    build:
+      context: .
+      dockerfile: ./.dev/Dockerfile
+    ports:
+      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:2345:2345"
+    environment:
+      DB_URL: "postgres://things:example@db:5432/things?sslmode=disable"
+    restart: always
+    volumes:
+      - ".:/app"
+      - "modules:/go/pkg/mod"
+    depends_on:
+      - db
+      - api_volume_init
+
+volumes:
+  modules:
+    driver: local
