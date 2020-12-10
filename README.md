@@ -1,17 +1,10 @@
----
-
-Note to reviewers.  I guess I was confused by what you were looking for and maybe overdid it. This "runbook" won't make sence without the code. The whole app and directions can be found here: https://github.com/jgreat/things
-
----
-
 # things
-
 
 A simple REST/CRUD code sample app.
 
 Golang, PostgreSQL
 
-Done in Go so I can learn some more Go.
+Done in Go to learn more Go.
 
 ## Config
 
@@ -19,16 +12,24 @@ Done in Go so I can learn some more Go.
 | --- | --- | --- |
 | DB_URL | `string` | `postgres://` url to database endpoint |
 
+Note: no additional configuration should be necessary for dev if launched with `docker-compose`
+
 ## Endpoints
+
+`GET /things`
 
 List all things
 
 Example
+
 ```
 curl localhost:8080/things
 ```
+---
 
-Add a thing
+`POST /thing`
+
+Add a thing with a json payload
 
 Payload
 
@@ -44,11 +45,13 @@ curl --header "Content-Type: application/json" \
   http://localhost:8080/thing
 ```
 
+---
+
 TODO: Delete a thing
 
-TODO: Update a thing
-
 ---
+
+TODO: Update a thing
 
 ## Development
 
@@ -70,10 +73,12 @@ cd ~/gopath/things/src/github.com/jgreat/things
 docker-compose up --build
 ```
 
+The app and DB will now be running and available on localhost.
+
 * App endpoint: http://127.0.0.1:8080
 * DB endpoint: `postgres://things:example@db:5432/things?sslmode=disable`
 
-When you make changes to the code the container should automatically restart and rebuild the app binary.
+When you make changes to the code the app container should automatically restart and rebuild the app binary.
 
 ### Debugging
 
@@ -115,7 +120,7 @@ mv go go-1.15.3
 
 ### Set up development environment
 
-These instructions will help you create an isolated project path in you home directory.
+These instructions will help you create an isolated project path in you home directory.  More details on gopath setup can be found here: https://golang.org/doc/gopath_code.html
 
 ```
 mkdir -p ~/gopath/things
